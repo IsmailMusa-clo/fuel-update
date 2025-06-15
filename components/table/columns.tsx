@@ -129,6 +129,17 @@ export const getProjectsColumns = (
     ),
   },
   {
+    accessorKey: "type",
+    header: () => <div className="text-center font-semibold">نوع المشروع</div>,
+    cell: ({ row }) => {
+      const type = row.getValue("type") as string;
+      const typeLabel = type === "residential_houses" ? "بيوت سكنية" : "عمارات سكنية";
+      return (
+        <p className="text-center font-medium text-sm">{typeLabel}</p>
+      );
+    },
+  },
+  {
     accessorKey: "lat",
     header: () => (
       <div className="text-center font-semibold">نقطة خط العرض</div>

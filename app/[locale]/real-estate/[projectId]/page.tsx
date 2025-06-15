@@ -2,7 +2,7 @@
 import React from "react";
 import { getCategories, getProjectById } from "@/lib/actions/map.actions";
 import BuildingPageClient from "./BuildingPageClient"; // Your Client Component
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 export default async function BuildingPage({
   params,
@@ -16,6 +16,11 @@ export default async function BuildingPage({
   if (!project?.project) {
     // TODO: FIX the root layout issue and not-found page is not working!
     notFound();
+  }
+
+  // إذا كان المشروع من نوع العمارات السكنية، توجيه إلى صفحة العمارات
+  if (project.project.type === "residential_buildings") {
+    redirect(`/ar/real-estate/${projectId}/buildings`);
   }
 
   // TODO: categories should be passed down as object to render the info but it's not working as expected

@@ -10,6 +10,13 @@ export enum CommonStatusesEnum {
 
 type CommonStatuses = "posted" | "archived" | "deleted";
 
+export enum ProjectTypeEnum {
+  residential_houses = "residential_houses",
+  residential_buildings = "residential_buildings",
+}
+
+export type ProjectType = "residential_houses" | "residential_buildings";
+
 export interface Template {
   name: string;
   link: string;
@@ -35,6 +42,7 @@ export interface Project {
   city: string;
   lng: string;
   lat: string;
+  type: ProjectType;
 }
 
 export type PaginatedProjects = PaginatedResponse<Project>;
@@ -98,6 +106,16 @@ export type Unit = {
   category: Categories;
   images: Img[];
 };
+
+export type Building = {
+  id: string;
+  name: string;
+  number: number;
+  imageUrl: string;
+  unitsCount: number;
+  project: Project;
+};
+
 export type Img = {
   title: string;
   src:string; 

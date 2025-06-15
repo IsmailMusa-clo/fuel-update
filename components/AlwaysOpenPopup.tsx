@@ -12,9 +12,14 @@ const AlwaysOpenPopup = ({ position, children, project }: { position: [number, n
 
 
   useEffect(() => {
+    // تحديد الرابط بناءً على نوع المشروع
+    const projectLink = project.type === "residential_buildings" 
+      ? `${language}/real-estate/${project.id}/buildings`
+      : `${language}/real-estate/${project.id}`;
+
     const popup = L.popup({ autoClose: false, closeOnClick: false, closeButton: false, className: "projects-popup" })
       .setLatLng(position)
-      .setContent(`<a href=${`${language}/real-estate/${project.id}`} style="font-size:14px; display:flex;flex-direction:column;gap:5px; max-width:70px; align-items:center; justify-content:center;">
+      .setContent(`<a href=${projectLink} style="font-size:14px; display:flex;flex-direction:column;gap:5px; max-width:70px; align-items:center; justify-content:center;">
                        <span style="font-size:14px">   <img src="/assets/icons/sarah-logo.png" style="width:60px;height:40px" /></span>
                        <span style="font-size:10px">${project.name}</span>
                   </a>`)
@@ -23,7 +28,7 @@ const AlwaysOpenPopup = ({ position, children, project }: { position: [number, n
     return () => {
       map.closePopup(popup);
     };
-  }, [map, position, children]);
+  }, [map, position, children, project]);
 
   return null;
 };

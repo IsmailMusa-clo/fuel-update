@@ -68,6 +68,9 @@ const projectFormSchema = z.object({
   status: z.enum(["posted", "draft", "deleted"], {
     required_error: "حالة المشروع حقل مطلوب",
   }),
+  type: z.enum(["residential_houses", "residential_buildings"], {
+    required_error: "نوع المشروع حقل مطلوب",
+  }),
   document: z.instanceof(File).array().optional(),
   lng: z.string(),
   lat: z.string(),
@@ -185,6 +188,36 @@ const UpdateProjectPage = ({ project }) => {
                         {status}
                       </SelectItem>
                     ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="type"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>نوع المشروع</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  defaultValue={project.type}
+                >
+                  <FormControl className="bg-white">
+                    <SelectTrigger>
+                      <SelectValue placeholder="اختر نوع المشروع" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="residential_houses">
+                      بيوت سكنية
+                    </SelectItem>
+                    <SelectItem value="residential_buildings">
+                      عمارات سكنية
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />

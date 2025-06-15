@@ -10,6 +10,9 @@ export interface Project  {
   model: string;
   updatedAt: Date;
   createdAt: Date;
+  type: "residential_houses" | "residential_buildings";
+  buildingsNumber: string;
+  document: File[];
 };
 
 export type Interest = {

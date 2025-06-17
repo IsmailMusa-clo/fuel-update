@@ -79,6 +79,9 @@ const projectFormSchema = z.object({
   status: z.enum(["posted", "draft", "deleted"], {
     required_error: "حالة المشروع حقل مطلوب",
   }),
+  type: z.enum(["residential_houses", "residential_buildings"], {
+    required_error: "نوع المشروع حقل مطلوب",
+  }),
   buildingsNumber: z.string({
     required_error: "عدد الوحدات السكنية حقل مطلوب",
   }),
@@ -101,6 +104,7 @@ const page = () => {
       name: "",
       city: "jadaa",
       status: "draft",
+      type: "residential_houses",
       buildingsNumber: "",
       lng: "",
       lat: "",
@@ -228,6 +232,42 @@ const page = () => {
                         </div>
                       </SelectItem>
                     ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="type"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-base font-semibold">
+                  نوع المشروع
+                </FormLabel>
+                <Select
+                  dir="rtl"
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl className="bg-white">
+                    <SelectTrigger>
+                      <SelectValue placeholder="بيوت سكنية" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="bg-white">
+                    <SelectItem value="residential_houses">
+                      <div className="flex items-center gap-2 cursor-pointer">
+                        <p>بيوت سكنية</p>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="residential_buildings">
+                      <div className="flex items-center gap-2 cursor-pointer">
+                        <p>عمارات سكنية</p>
+                      </div>
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />

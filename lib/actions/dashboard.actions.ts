@@ -102,6 +102,7 @@ export const addProject = async (projectData: Project) => {
   formData.append("number", projectData.number);
   formData.append("city", projectData.city);
   formData.append("status", projectData.status);
+  formData.append("type", projectData.type);
   formData.append("buildingsNumber", projectData.buildingsNumber);
   formData.append("lat", projectData.lat);
   formData.append("lng", projectData.lng);

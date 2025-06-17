@@ -12,6 +12,7 @@ import {
 import { BiSolidDashboard } from "react-icons/bi";
 import { FaCity } from "react-icons/fa";
 import { IoAdd } from "react-icons/io5";
+import { HiOfficeBuilding } from "react-icons/hi";
 
 import {
   Sidebar,
@@ -43,6 +44,11 @@ const items: ItemsProps[] = [
     title: "المشاريع",
     url: "/ar/dashboard/projects",
     icon: FaCity,
+  },
+  {
+    title: "العمارات السكنية",
+    url: "/ar/dashboard/buildings-management",
+    icon: HiOfficeBuilding,
   },
   {
     title: "الفئات",
@@ -103,7 +109,9 @@ export default function DashboardSidebar() {
                   <SidebarMenuButton
                     className={clsx(
                       "py-6",
-                      path.split("/").pop() === item.url.split("/").pop()
+                      path.split("/").pop() === item.url.split("/").pop() ||
+                      (item.url === "/ar/dashboard/buildings-management" && 
+                       path.includes("/buildings-management"))
                         ? "bg-[#00a8e8] hover:bg-[#00a8e8] !text-white"
                         : ""
                     )}
@@ -114,7 +122,9 @@ export default function DashboardSidebar() {
                       <span
                         className={clsx(
                           "text-gray-600 text-base font-semibold",
-                          path.split("/").pop() === item.url.split("/").pop()
+                          path.split("/").pop() === item.url.split("/").pop() ||
+                          (item.url === "/ar/dashboard/buildings-management" && 
+                           path.includes("/buildings-management"))
                             ? "text-white"
                             : ""
                         )}

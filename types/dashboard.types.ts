@@ -10,6 +10,9 @@ export interface Project  {
   model: string;
   updatedAt: Date;
   createdAt: Date;
+  type: "residential_houses" | "residential_buildings";
+  buildingsNumber: string;
+  document: File[];
 };
 
 export type Interest = {
@@ -58,9 +61,27 @@ export type Operation = {
   status: string; 
 };
 
-
 export type issues = {
 name: string;
 phoneNumber: string;
 description: string;
+}
+
+// إضافة نوع العمارة السكنية
+export interface Building {
+  id: string;
+  name: string;
+  number: number;
+  description?: string;
+  unitsCount: number;
+  floors: number;
+  status: "متاح" | "قيد الإنشاء" | "مكتمل";
+  position: {
+    x: number;
+    y: number;
+  };
+  projectId: string;
+  imageUrl?: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
